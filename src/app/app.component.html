@@ -3,6 +3,10 @@
 <!-- event filtering -->
 <input type="text" (keyup.enter) = "onKeyup()">
 <br>
+<!-- ngFor directive -->
+<ul>
+    <li *ngFor= 'let post of postArray'>{{post}}</li>
+</ul>
 <!-- event binding -->
 <button (click)="btnClick()">Click Me</button>
 <!-- <h3>{{message}}</h3> -->

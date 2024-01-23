@@ -15,6 +15,8 @@ export class AppComponent{
 
   imgUrl:string = 'https://www.rd.com/wp-content/uploads/2021/01/GettyImages-1175550351.jpg?fit=335,335'
 
+  // ngFor directive
+  postArray : Array<string> = ['post1', 'post2', 'post3', 'post4', 'post5']
   constructor(){
   }
   receiveMsg($event:any){

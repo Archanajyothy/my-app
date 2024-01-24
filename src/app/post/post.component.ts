@@ -9,11 +9,8 @@ export class PostComponent {
   title: string = "List of posts";
   //childMessage: string = 'From child component';
 
+  //child - parent
   outputChildMessage : string = 'Message from child component via output '
-
-  @Input() fromParent: string; 
-
-  postParentMsg: string = 'Message from post parent';
 
   @Output() messageEvent = new EventEmitter<string>()
 
@@ -21,5 +18,14 @@ export class PostComponent {
     // console.log("clicked");
     this.messageEvent.emit(this.outputChildMessage)
   }
+
+  //parent - child communication
+  @Input() fromParent: string; 
+
+  postParentMsg: string = 'Message from post parent';
+
+  
+
+  
 
 }

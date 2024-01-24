@@ -1,4 +1,58 @@
 <h1 [class.text-red] = "bool">Angular App</h1>
+
+<!-- angulae template driven form -->
+<div class="form-area">
+    <form #f="ngForm" (ngSubmit) = "onSubmit(f)">
+        <div class="form-group">
+            <label>First Name</label>
+            <input 
+            type="text" 
+            placeholder="First Name" 
+            class="form-control" 
+            name="fullname" 
+            ngModel 
+            #fullName = 'ngModel' (change) = "getValue(fullName)"
+            required
+            >
+
+            <div class="alert alert-danger" *ngIf = "fullName.touched && fullName.invalid">
+                Full Name is required...
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input 
+            type="email" 
+            placeholder="Email" 
+            class="form-control" 
+            name="email" 
+            ngModel 
+            #email = 'ngModel' 
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            required
+            >
+            <div *ngIf = "email.errors?.['required']">
+                <div class="alert alert-danger" *ngIf = 'email.touched && email.invalid'>
+                    Email is required
+                </div>
+            </div>
+            <div *ngIf = "email.errors?.pattern">
+                <div class="alert alert-danger" *ngIf = 'email.touched && email.invalid'>
+                    Invalid Email Address
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Address</label>
+            <textarea cols="30" rows="10" placeholder="Address" class="form-control" name="address" ngModel required ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled] = 'f.invalid'>Submit</button>
+    </form>
+</div>
+<!--  -->
+
 <h1 [style.color] = "bool? 'pink' : 'lightblue'">style binding</h1>
 <!-- event filtering -->
 <input type="text" (keyup.enter) = "onKeyup()">
@@ -16,5 +70,7 @@
 
 
 <app-navbar></app-navbar>
+
+<!-- child to parent -->
 <app-post [fromParent] = 'parentMessage' (messageEvent) = 'receiveMsg($event)'></app-post>
 <p>{{fromOutputChild}}</p>

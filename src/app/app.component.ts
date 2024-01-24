@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PostComponent } from './post/post.component';
+import { FormControl, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,10 @@ import { PostComponent } from './post/post.component';
 })
 export class AppComponent{
   title = 'my-app';
+  //parent to child data sharing
   parentMessage: string = 'Message coming from parent component'
+
+  //child to parent data sharing
   fromOutputChild: string;
 
   bool:boolean = true
@@ -19,6 +23,8 @@ export class AppComponent{
   postArray : Array<string> = ['post1', 'post2', 'post3', 'post4', 'post5']
   constructor(){
   }
+
+  //child-parent using @output
   receiveMsg($event:any){
     console.log($event);
     this.fromOutputChild =$event
@@ -32,6 +38,17 @@ export class AppComponent{
   //event filtering
   onKeyup(){
     console.log("enter key pressed");
+    
+  }
+
+  //template form func()
+  onSubmit(f: NgForm){
+    console.log(f.value);
+    
+  } 
+
+  getValue(f: any){
+    console.log(f);
     
   }
 }
